@@ -35,7 +35,7 @@
 ---
 
 ## 三、甘特圖圖片
-
+![Gantt Chart](./gantt_hw2.png)
 
 ---
 
