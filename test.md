@@ -40,7 +40,6 @@ classDiagram
     使用者 "1" --> "多" 提醒 : 設定
     課程 "1" --> "1" 提醒 : 觸發提醒
 
-## 使用案例1：管理課表（循序圖）
 
 sequenceDiagram
     participant User as 使用者
