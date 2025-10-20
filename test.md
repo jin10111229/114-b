@@ -68,3 +68,76 @@ flowchart TD
     F --> G[顯示更新結果]
     G --> H[結束]
 
+---
+
+## 使用案例 2：輸入與查詢成績 — 循序圖
+
+```markdown
+```mermaid
+sequenceDiagram
+    participant User as 使用者
+    participant UI as 系統介面
+    participant Grade as 成績模組
+    participant DB as 資料庫
+
+    User ->> UI: 輸入成績資料
+    UI ->> Grade: 傳送成績資訊
+    Grade ->> Grade: 驗證輸入格式
+    Grade ->> DB: 儲存成績
+    Grade ->> Grade: 計算平均分數
+    DB -->> Grade: 儲存成功
+    Grade -->> UI: 顯示平均與結果
+    UI -->> User: 顯示成績查詢結果
+
+### 活動圖 — 輸入與查詢成績
+
+```markdown
+```mermaid
+flowchart TD
+    A[開始] --> B[選擇課程]
+    B --> C[輸入成績]
+    C --> D{輸入格式正確?}
+    D -- 否 --> E[提示重新輸入]
+    D -- 是 --> F[儲存成績]
+    F --> G[計算平均分數]
+    G --> H[顯示成績與平均]
+    H --> I[結束]
+
+---
+
+## 使用案例 3：接收上課提醒 — 循序圖
+
+```markdown
+```mermaid
+sequenceDiagram
+    participant User as 使用者
+    participant Reminder as 提醒模組
+    participant Schedule as 課程模組
+    participant System as 通知服務
+
+    User ->> Reminder: 設定提醒時間
+    Schedule ->> Reminder: 傳送課程時間
+    Reminder ->> System: 排程提醒通知
+    System -->> User: 發送通知
+    Schedule ->> Reminder: 若課程修改，更新提醒設定
+
+### 活動圖 — 接收上課提醒
+
+```markdown
+```mermaid
+flowchart TD
+    A[開始] --> B[設定提醒時間]
+    B --> C[系統比對課程時間]
+    C --> D[建立提醒排程]
+    D --> E{上課時間到?}
+    E -- 否 --> D
+    E -- 是 --> F[發送上課通知]
+    F --> G[課程修改時自動更新提醒]
+    G --> H[結束]
+
+    }
+
+    使用者 "1" --> "多" 課程 : 管理
+    使用者 "1" --> "多" 成績 : 輸入/查詢
+    使用者 "1" --> "多" 提醒 : 設定
+    課程 "1" --> "1" 提醒 : 觸發提醒
